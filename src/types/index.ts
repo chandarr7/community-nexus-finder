@@ -38,3 +38,18 @@ export interface CategoryOption {
   label: string;
   icon: string;
 }
+
+export interface Job {
+  id: string;
+  title: string;
+  department: string;
+  location: string;
+  description: string;
+  hoursPerWeek: string;
+  pay: string;
+  requirements: string[];
+  contactEmail: string;
+  postedDate: string;
+  applicationDeadline: string;
+  isOnCampus: boolean;
+}

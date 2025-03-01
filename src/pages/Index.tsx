@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Search } from 'lucide-react';
+import { ArrowRight, Search, BriefcaseIcon } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FeaturedEvent from '../components/FeaturedEvent';
@@ -48,10 +48,11 @@ const Index = () => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <Link
-                  to="/about"
+                  to="/usf-jobs"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-secondary text-foreground font-medium hover:bg-secondary/80 transition-colors duration-300"
                 >
-                  Learn More
+                  USF Student Jobs
+                  <BriefcaseIcon className="ml-2 h-4 w-4" />
                 </Link>
               </div>
             </div>
@@ -109,6 +110,64 @@ const Index = () => {
                 </button>
               </div>
             )}
+          </div>
+        </section>
+        
+        {/* USF Student Jobs Section */}
+        <section className="py-16 bg-white dark:bg-gray-900">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-5xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="w-full md:w-1/2 order-2 md:order-1">
+                  <div className="bg-primary/5 rounded-2xl p-8 relative overflow-hidden">
+                    <div className="relative z-10">
+                      <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary mb-4">
+                        USF Students
+                      </span>
+                      <h2 className="text-2xl sm:text-3xl font-bold mb-4">Find Part-Time Jobs at USF</h2>
+                      <p className="text-muted-foreground mb-6">
+                        Balance your studies with valuable work experience. Discover on-campus opportunities that fit your schedule and help you earn while you learn.
+                      </p>
+                      <ul className="space-y-3 mb-6">
+                        <li className="flex items-start">
+                          <div className="flex-shrink-0 h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center mt-1">
+                            <span className="h-2.5 w-2.5 rounded-full bg-primary"></span>
+                          </div>
+                          <span className="ml-2 text-sm">Flexible schedules around your classes</span>
+                        </li>
+                        <li className="flex items-start">
+                          <div className="flex-shrink-0 h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center mt-1">
+                            <span className="h-2.5 w-2.5 rounded-full bg-primary"></span>
+                          </div>
+                          <span className="ml-2 text-sm">Conveniently located on campus</span>
+                        </li>
+                        <li className="flex items-start">
+                          <div className="flex-shrink-0 h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center mt-1">
+                            <span className="h-2.5 w-2.5 rounded-full bg-primary"></span>
+                          </div>
+                          <span className="ml-2 text-sm">Gain valuable work experience</span>
+                        </li>
+                      </ul>
+                      <Link
+                        to="/usf-jobs"
+                        className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors duration-300"
+                      >
+                        Explore USF Jobs
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </div>
+                    
+                    {/* Background decoration */}
+                    <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2 order-1 md:order-2">
+                  <div className="rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-primary/20 to-primary/5 aspect-square flex items-center justify-center">
+                    <BriefcaseIcon className="h-32 w-32 text-primary/40" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
         
