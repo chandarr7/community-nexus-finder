@@ -6,9 +6,11 @@ import { ArrowLeft, Mail, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { toast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSocialLogin = (provider: string) => {
     setLoading(true);
@@ -20,6 +22,7 @@ const SignIn = () => {
         description: `You've signed in with ${provider}`,
         variant: "success",
       });
+      navigate('/');
     }, 1500);
   };
 
@@ -70,6 +73,16 @@ const SignIn = () => {
                 <Button 
                   variant="outline" 
                   className="w-full flex items-center justify-center gap-2"
+                  onClick={() => handleSocialLogin('Gmail')}
+                  disabled={loading}
+                >
+                  <Mail className="h-4 w-4 text-red-500" />
+                  <span>Continue with Gmail</span>
+                </Button>
+                
+                <Button 
+                  variant="outline" 
+                  className="w-full flex items-center justify-center gap-2"
                   onClick={() => handleSocialLogin('GitHub')}
                   disabled={loading}
                 >
@@ -83,7 +96,7 @@ const SignIn = () => {
                   onClick={() => handleSocialLogin('LinkedIn')}
                   disabled={loading}
                 >
-                  <Linkedin className="h-4 w-4" />
+                  <Linkedin className="h-4 w-4 text-blue-600" />
                   <span>Continue with LinkedIn</span>
                 </Button>
                 

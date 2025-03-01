@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Mail, ArrowRight, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { toast } from '@/hooks/use-toast';
 
 const Welcome = () => {
   const [loading, setLoading] = useState(false);
@@ -22,6 +23,11 @@ const Welcome = () => {
     // Simulating login process
     setTimeout(() => {
       setLoading(false);
+      toast({
+        title: "Login Successful",
+        description: `You've signed in with ${provider}`,
+        variant: "success",
+      });
       navigate('/');
     }, 1500);
   };
@@ -42,7 +48,7 @@ const Welcome = () => {
           <Button 
             variant="outline" 
             className="w-full flex items-center justify-center gap-2 h-12"
-            onClick={() => handleSocialLogin('google')}
+            onClick={() => handleSocialLogin('Google')}
             disabled={loading}
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
@@ -69,7 +75,17 @@ const Welcome = () => {
           <Button 
             variant="outline" 
             className="w-full flex items-center justify-center gap-2 h-12"
-            onClick={() => handleSocialLogin('github')}
+            onClick={() => handleSocialLogin('Gmail')}
+            disabled={loading}
+          >
+            <Mail className="h-5 w-5 text-red-500" />
+            <span>Continue with Gmail</span>
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            className="w-full flex items-center justify-center gap-2 h-12"
+            onClick={() => handleSocialLogin('GitHub')}
             disabled={loading}
           >
             <Github className="h-5 w-5" />
@@ -79,21 +95,11 @@ const Welcome = () => {
           <Button 
             variant="outline" 
             className="w-full flex items-center justify-center gap-2 h-12"
-            onClick={() => handleSocialLogin('linkedin')}
+            onClick={() => handleSocialLogin('LinkedIn')}
             disabled={loading}
           >
-            <Linkedin className="h-5 w-5" />
+            <Linkedin className="h-5 w-5 text-blue-600" />
             <span>Continue with LinkedIn</span>
-          </Button>
-          
-          <Button 
-            variant="outline" 
-            className="w-full flex items-center justify-center gap-2 h-12"
-            onClick={() => handleSocialLogin('email')}
-            disabled={loading}
-          >
-            <Mail className="h-5 w-5" />
-            <span>Continue with Email</span>
           </Button>
         </div>
         
