@@ -1,4 +1,3 @@
-
 export interface Event {
   id: string;
   title: string;
@@ -52,4 +51,24 @@ export interface Job {
   postedDate: string;
   applicationDeadline: string;
   isOnCampus: boolean;
+}
+
+export type GroupType = 
+  | 'department'
+  | 'student_organization'
+  | 'club'
+  | 'sports_team'
+  | 'academic'
+  | 'community';
+
+export interface Group {
+  id: string;
+  name: string;
+  type: GroupType;
+  description: string;
+  memberCount: number;
+  image?: string;
+  isFavorite: boolean;
+  isJoined: boolean;
+  createdAt: string;
 }

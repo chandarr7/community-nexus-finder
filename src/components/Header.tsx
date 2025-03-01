@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, User, LogIn, Home, Bell } from 'lucide-react';
+import { Menu, X, User, LogIn, Home, Bell, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Badge } from '@/components/ui/badge';
@@ -43,6 +43,7 @@ const Header = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Events', path: '/events' },
+    { name: 'Groups', path: '/groups' },
     { name: 'USF Jobs', path: '/usf-jobs' },
     { name: 'Student Housing', path: '/student-housing' },
     { name: 'About Us', path: '/about' },
