@@ -51,7 +51,7 @@ const Index = () => {
                   to="/usf-jobs"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-secondary text-foreground font-medium hover:bg-secondary/80 transition-colors duration-300"
                 >
-                  USF Student Jobs
+                  USF Student Part-Time Jobs
                   <BriefcaseIcon className="ml-2 h-4 w-4" />
                 </Link>
               </div>
@@ -152,7 +152,7 @@ const Index = () => {
                         to="/usf-jobs"
                         className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors duration-300"
                       >
-                        Explore USF Jobs
+                        Explore USF Part-Time Jobs
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </div>
