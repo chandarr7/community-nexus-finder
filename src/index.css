@@ -93,7 +93,7 @@
     @apply bg-background text-foreground font-sans;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    padding-bottom: 60px;
+    padding-bottom: 76px;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -116,13 +116,11 @@
     @apply text-xl sm:text-2xl;
   }
 
-  /* Add smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
 }
 
-/* Custom utility classes */
 @layer components {
   .glassmorphism {
     @apply bg-white/80 backdrop-blur-sm dark:bg-black/50;
