@@ -2,9 +2,27 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Google, Github, Linkedin, Mail } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+import { toast } from '@/hooks/use-toast';
 
 const SignIn = () => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSocialLogin = (provider: string) => {
+    setLoading(true);
+    // Simulating login process
+    setTimeout(() => {
+      setLoading(false);
+      toast({
+        title: "Login Successful",
+        description: `You've signed in with ${provider}`,
+        variant: "success",
+      });
+    }, 1500);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -20,6 +38,45 @@ const SignIn = () => {
                 </Link>
               </div>
               <h1 className="text-2xl font-bold mb-6">Sign In</h1>
+              
+              <div className="space-y-4 mb-6">
+                <Button 
+                  variant="outline" 
+                  className="w-full flex items-center justify-center gap-2"
+                  onClick={() => handleSocialLogin('Google')}
+                  disabled={loading}
+                >
+                  <Google className="h-4 w-4" />
+                  <span>Continue with Google</span>
+                </Button>
+                
+                <Button 
+                  variant="outline" 
+                  className="w-full flex items-center justify-center gap-2"
+                  onClick={() => handleSocialLogin('GitHub')}
+                  disabled={loading}
+                >
+                  <Github className="h-4 w-4" />
+                  <span>Continue with GitHub</span>
+                </Button>
+                
+                <Button 
+                  variant="outline" 
+                  className="w-full flex items-center justify-center gap-2"
+                  onClick={() => handleSocialLogin('LinkedIn')}
+                  disabled={loading}
+                >
+                  <Linkedin className="h-4 w-4" />
+                  <span>Continue with LinkedIn</span>
+                </Button>
+                
+                <div className="relative flex items-center gap-4 py-2">
+                  <div className="flex-grow border-t border-gray-300"></div>
+                  <span className="text-sm text-gray-500">or</span>
+                  <div className="flex-grow border-t border-gray-300"></div>
+                </div>
+              </div>
+              
               <form className="space-y-4">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-1">
