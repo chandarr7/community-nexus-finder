@@ -1,15 +1,19 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, User, LogIn, Home } from 'lucide-react';
+import { Menu, X, User, LogIn, Home, Bell } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Badge } from '@/components/ui/badge';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
   const location = useLocation();
+  
+  // Sample unread notification count
+  const unreadNotifications = 3;
   
   // Toggle mobile menu
   const toggleMenu = () => {
@@ -77,8 +81,16 @@ const Header = () => {
             ))}
           </nav>
           
-          {/* Auth Buttons - Desktop */}
+          {/* Auth Buttons & Notifications - Desktop */}
           <div className="hidden md:flex items-center space-x-4">
+            <Link to="/notifications" className="relative p-2 rounded-full hover:bg-accent/50 transition-colors">
+              <Bell className="h-5 w-5" />
+              {unreadNotifications > 0 && (
+                <Badge variant="destructive" className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center p-0 text-xs rounded-full">
+                  {unreadNotifications}
+                </Badge>
+              )}
+            </Link>
             <Link to="/sign-in">
               <Button variant="ghost" size="sm" className="flex items-center">
                 <LogIn className="h-4 w-4 mr-2" />
@@ -94,13 +106,23 @@ const Header = () => {
           </div>
           
           {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden p-2 rounded-md hover:bg-accent/50 transition-colors"
-            onClick={toggleMenu}
-            aria-label={isOpen ? 'Close Menu' : 'Open Menu'}
-          >
-            {isOpen ? <X /> : <Menu />}
-          </button>
+          <div className="md:hidden flex items-center space-x-2">
+            <Link to="/notifications" className="relative p-2 rounded-full hover:bg-accent/50 transition-colors">
+              <Bell className="h-5 w-5" />
+              {unreadNotifications > 0 && (
+                <Badge variant="destructive" className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center p-0 text-xs rounded-full">
+                  {unreadNotifications}
+                </Badge>
+              )}
+            </Link>
+            <button 
+              className="p-2 rounded-md hover:bg-accent/50 transition-colors"
+              onClick={toggleMenu}
+              aria-label={isOpen ? 'Close Menu' : 'Open Menu'}
+            >
+              {isOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </div>
       </div>
       
