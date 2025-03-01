@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Search, BriefcaseIcon, NewspaperIcon, ExternalLinkIcon } from 'lucide-react';
+import { ArrowRight, Search, BriefcaseIcon, NewspaperIcon, ExternalLinkIcon, HomeIcon } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FeaturedEvent from '../components/FeaturedEvent';
@@ -12,7 +11,6 @@ import { getFeaturedEvents, getEventsByCategory } from '../data/events';
 import { Event } from '../types';
 import { toast } from '@/hooks/use-toast';
 
-// Sample breaking news data
 const breakingNews = [
   {
     id: 1,
@@ -50,7 +48,6 @@ const Index = () => {
     setFilteredEvents(getEventsByCategory(selectedCategory));
   }, [selectedCategory]);
 
-  // Show welcome notification when the page loads
   useEffect(() => {
     setTimeout(() => {
       toast({
@@ -61,7 +58,6 @@ const Index = () => {
     }, 1500);
   }, []);
 
-  // Handler for when a user interacts with an event
   const handleEventInteraction = (event: Event) => {
     toast({
       title: `Event Update: ${event.title}`,
@@ -70,7 +66,6 @@ const Index = () => {
     });
   };
 
-  // Handler for category change with notification
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
     
@@ -86,7 +81,6 @@ const Index = () => {
       <Header />
       
       <main className="flex-grow pt-16 md:pt-20">
-        {/* Hero Section */}
         <section className="relative bg-accent/30 py-16 md:py-20 lg:py-24 overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto animate-fade-in">
@@ -114,16 +108,21 @@ const Index = () => {
                   USF Student Part-Time Jobs
                   <BriefcaseIcon className="ml-2 h-4 w-4" />
                 </Link>
+                <Link
+                  to="/student-housing"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-accent text-foreground font-medium hover:bg-accent/80 transition-colors duration-300"
+                >
+                  Student Housing
+                  <HomeIcon className="ml-2 h-4 w-4" />
+                </Link>
               </div>
             </div>
           </div>
           
-          {/* Background decoration */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
         </section>
         
-        {/* Breaking News Section */}
         <section className="py-12 bg-white dark:bg-gray-900">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-8 flex items-center justify-between">
@@ -174,7 +173,6 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Featured Event Section */}
         {featuredEvents.length > 0 && (
           <section className="py-16 overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -196,7 +194,6 @@ const Index = () => {
           </section>
         )}
         
-        {/* Categories & Events Section */}
         <section className="py-16 bg-accent/30">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold mb-8">Explore Events</h2>
@@ -235,8 +232,7 @@ const Index = () => {
           </div>
         </section>
         
-        {/* USF Student Jobs Section */}
-        <section className="py-16 bg-white dark:bg-gray-900">
+        <section className="py-16 bg-accent/20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto">
               <div className="flex flex-col md:flex-row items-center gap-8">
@@ -246,53 +242,52 @@ const Index = () => {
                       <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary mb-4">
                         USF Students
                       </span>
-                      <h2 className="text-2xl sm:text-3xl font-bold mb-4">Find Part-Time Jobs at USF</h2>
+                      <h2 className="text-2xl sm:text-3xl font-bold mb-4">Find Student Housing</h2>
                       <p className="text-muted-foreground mb-6">
-                        Balance your studies with valuable work experience. Discover on-campus opportunities that fit your schedule and help you earn while you learn.
+                        Looking for a place to stay? Explore dorms, apartments, rental homes, and more. Find accommodations that fit your budget and lifestyle.
                       </p>
                       <ul className="space-y-3 mb-6">
                         <li className="flex items-start">
                           <div className="flex-shrink-0 h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center mt-1">
                             <span className="h-2.5 w-2.5 rounded-full bg-primary"></span>
                           </div>
-                          <span className="ml-2 text-sm">Flexible schedules around your classes</span>
+                          <span className="ml-2 text-sm">On and off-campus options</span>
                         </li>
                         <li className="flex items-start">
                           <div className="flex-shrink-0 h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center mt-1">
                             <span className="h-2.5 w-2.5 rounded-full bg-primary"></span>
                           </div>
-                          <span className="ml-2 text-sm">Conveniently located on campus</span>
+                          <span className="ml-2 text-sm">Filter by neighborhood and budget</span>
                         </li>
                         <li className="flex items-start">
                           <div className="flex-shrink-0 h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center mt-1">
                             <span className="h-2.5 w-2.5 rounded-full bg-primary"></span>
                           </div>
-                          <span className="ml-2 text-sm">Gain valuable work experience</span>
+                          <span className="ml-2 text-sm">Connect with roommates</span>
                         </li>
                       </ul>
                       <Link
-                        to="/usf-jobs"
+                        to="/student-housing"
                         className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors duration-300"
                         onClick={() => {
                           toast({
-                            title: "Exploring Jobs",
-                            description: "Checking out USF student part-time job opportunities.",
+                            title: "Exploring Housing",
+                            description: "Checking out student housing options in Tampa Bay.",
                             variant: "activity",
                           });
                         }}
                       >
-                        Explore USF Part-Time Jobs
+                        Explore Student Housing
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </div>
                     
-                    {/* Background decoration */}
                     <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
                   </div>
                 </div>
                 <div className="w-full md:w-1/2 order-1 md:order-2">
                   <div className="rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-primary/20 to-primary/5 aspect-square flex items-center justify-center">
-                    <BriefcaseIcon className="h-32 w-32 text-primary/40" />
+                    <HomeIcon className="h-32 w-32 text-primary/40" />
                   </div>
                 </div>
               </div>
@@ -300,7 +295,6 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Become an Organizer Section */}
         <section className="py-16 md:py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-primary/5 rounded-2xl p-8 md:p-12 relative overflow-hidden">
@@ -328,7 +322,6 @@ const Index = () => {
                 </Link>
               </div>
               
-              {/* Background decoration */}
               <div className="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-primary/10 to-transparent"></div>
               <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
             </div>

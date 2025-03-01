@@ -11,6 +11,7 @@ import USFJobs from "./pages/USFJobs";
 import SignIn from "./pages/SignIn";
 import CreateAccount from "./pages/CreateAccount";
 import About from "./pages/About";
+import StudentHousing from "./pages/StudentHousing";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/create-account" element={<CreateAccount />} />
           <Route path="/about" element={<About />} />
+          <Route path="/student-housing" element={<StudentHousing />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
