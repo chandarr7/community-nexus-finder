@@ -1,6 +1,8 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
+import { Linkedin } from 'lucide-react';
 
 const About = () => {
   return (
@@ -26,13 +28,40 @@ const About = () => {
                 
                 <ul className="space-y-4 mb-8">
                   <li className="p-4 bg-accent/20 rounded-lg">
-                    <span className="font-medium">Maha Lakshmi Nekkanti</span> – U98024085
+                    <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
+                      <span className="font-medium">Maha Lakshmi Nekkanti</span> – U98024085
+                      <a href="https://www.linkedin.com/in/mahalakshmi-nekkanti-a18262164/" 
+                         target="_blank" 
+                         rel="noopener noreferrer" 
+                         className="flex items-center text-primary hover:text-primary/80 transition-colors">
+                        <Linkedin className="h-4 w-4 mr-1" />
+                        <span>LinkedIn</span>
+                      </a>
+                    </div>
                   </li>
                   <li className="p-4 bg-accent/20 rounded-lg">
-                    <span className="font-medium">Neha Apparao Yejgar</span> – U66487389
+                    <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
+                      <span className="font-medium">Neha Apparao Yejgar</span> – U66487389
+                      <a href="https://www.linkedin.com/in/neha-yejgar/" 
+                         target="_blank" 
+                         rel="noopener noreferrer" 
+                         className="flex items-center text-primary hover:text-primary/80 transition-colors">
+                        <Linkedin className="h-4 w-4 mr-1" />
+                        <span>LinkedIn</span>
+                      </a>
+                    </div>
                   </li>
                   <li className="p-4 bg-accent/20 rounded-lg">
-                    <span className="font-medium">Chandar Rathala</span> – U82675064
+                    <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
+                      <span className="font-medium">Chandar Rathala</span> – U82675064
+                      <a href="https://www.linkedin.com/in/chandar-rathala/" 
+                         target="_blank" 
+                         rel="noopener noreferrer" 
+                         className="flex items-center text-primary hover:text-primary/80 transition-colors">
+                        <Linkedin className="h-4 w-4 mr-1" />
+                        <span>LinkedIn</span>
+                      </a>
+                    </div>
                   </li>
                 </ul>
                 
