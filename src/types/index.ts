@@ -1,3 +1,4 @@
+
 export interface Event {
   id: string;
   title: string;
@@ -71,4 +72,14 @@ export interface Group {
   isFavorite: boolean;
   isJoined: boolean;
   createdAt: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  groupId: string;
+  userId: string;
+  userName: string;
+  userAvatar?: string;
+  content: string;
+  timestamp: string;
 }
