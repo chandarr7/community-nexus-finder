@@ -55,9 +55,9 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-              <span className="text-white font-bold">U</span>
+              <span className="text-white font-bold">C</span>
             </div>
-            <span className="text-xl font-bold text-primary">USF Connect</span>
+            <span className="text-xl font-bold text-primary">Community Connect</span>
           </Link>
           
           {/* Desktop Navigation */}
