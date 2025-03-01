@@ -2,7 +2,7 @@
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Index from "./pages/Index";
@@ -18,8 +18,35 @@ import Notifications from "./pages/Notifications";
 import Groups from "./pages/Groups";
 import GroupDetail from "./pages/GroupDetail";
 import Welcome from "./pages/Welcome";
+import BottomNav from "./components/BottomNav";
 
 const queryClient = new QueryClient();
+
+// Component to conditionally render bottom nav
+const AppContent = () => {
+  const location = useLocation();
+  const isMobile = useIsMobile();
+  
+  // Pages where we don't want to show the bottom navigation
+  const noBottomNavPages = [
+    '/welcome', 
+    '/sign-in', 
+    '/create-account', 
+    '/notifications'
+  ];
+  
+  // Check if we should show bottom nav based on current path
+  const shouldShowBottomNav = !noBottomNavPages.some(page => 
+    location.pathname.startsWith(page)
+  );
+  
+  return (
+    <>
+      <AppRoutes />
+      {isMobile && shouldShowBottomNav && <BottomNav />}
+    </>
+  );
+};
 
 const AppRoutes = () => {
   const [isFirstVisit, setIsFirstVisit] = useState(true);
@@ -68,7 +95,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <BrowserRouter>
-        <AppRoutes />
+        <AppContent />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
