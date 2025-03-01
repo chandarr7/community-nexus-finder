@@ -10,6 +10,7 @@ import SearchBar from '../components/SearchBar';
 import CategoryFilter from '../components/CategoryFilter';
 import { getFeaturedEvents, getEventsByCategory } from '../data/events';
 import { Event } from '../types';
+import { toast } from '@/hooks/use-toast';
 
 // Sample breaking news data
 const breakingNews = [
@@ -48,6 +49,37 @@ const Index = () => {
   useEffect(() => {
     setFilteredEvents(getEventsByCategory(selectedCategory));
   }, [selectedCategory]);
+
+  // Show welcome notification when the page loads
+  useEffect(() => {
+    setTimeout(() => {
+      toast({
+        title: "Welcome back!",
+        description: "You have 3 new event updates in your area.",
+        variant: "activity",
+      });
+    }, 1500);
+  }, []);
+
+  // Handler for when a user interacts with an event
+  const handleEventInteraction = (event: Event) => {
+    toast({
+      title: `Event Update: ${event.title}`,
+      description: "This event was recently updated with new information.",
+      variant: "info",
+    });
+  };
+
+  // Handler for category change with notification
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    
+    toast({
+      title: "Category Updated",
+      description: `Now showing ${category === 'all' ? 'all events' : `${category} events`}.`,
+      variant: "activity",
+    });
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -118,6 +150,13 @@ const Index = () => {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="block bg-accent/10 rounded-xl p-6 hover:shadow-md transition-shadow duration-300"
+                  onClick={() => {
+                    toast({
+                      title: "Reading news",
+                      description: `You're now reading: ${item.title}`,
+                      variant: "activity",
+                    });
+                  }}
                 >
                   <div className="flex flex-col h-full">
                     <div className="flex-grow">
@@ -150,7 +189,9 @@ const Index = () => {
                 </Link>
               </div>
               
-              <FeaturedEvent event={featuredEvents[0]} />
+              <div onClick={() => handleEventInteraction(featuredEvents[0])}>
+                <FeaturedEvent event={featuredEvents[0]} />
+              </div>
             </div>
           </section>
         )}
@@ -162,20 +203,29 @@ const Index = () => {
             
             <CategoryFilter 
               selectedCategory={selectedCategory} 
-              onChange={setSelectedCategory}
+              onChange={handleCategoryChange}
               className="mb-8"
             />
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredEvents.slice(0, visibleCount).map((event) => (
-                <EventCard key={event.id} event={event} />
+                <div key={event.id} onClick={() => handleEventInteraction(event)}>
+                  <EventCard event={event} />
+                </div>
               ))}
             </div>
             
             {visibleCount < filteredEvents.length && (
               <div className="mt-12 text-center">
                 <button
-                  onClick={() => setVisibleCount(Math.min(visibleCount + 4, filteredEvents.length))}
+                  onClick={() => {
+                    setVisibleCount(Math.min(visibleCount + 4, filteredEvents.length));
+                    toast({
+                      title: "More Events Loaded",
+                      description: "Showing more events for you to explore.",
+                      variant: "success",
+                    });
+                  }}
                   className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-secondary text-foreground font-medium hover:bg-secondary/80 transition-colors duration-300"
                 >
                   Load More Events
@@ -223,6 +273,13 @@ const Index = () => {
                       <Link
                         to="/usf-jobs"
                         className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors duration-300"
+                        onClick={() => {
+                          toast({
+                            title: "Exploring Jobs",
+                            description: "Checking out USF student part-time job opportunities.",
+                            variant: "activity",
+                          });
+                        }}
                       >
                         Explore USF Part-Time Jobs
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -258,6 +315,13 @@ const Index = () => {
                 <Link
                   to="/contact"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors duration-300"
+                  onClick={() => {
+                    toast({
+                      title: "Organizer Application",
+                      description: "You're on your way to becoming an event organizer!",
+                      variant: "success",
+                    });
+                  }}
                 >
                   Get Started
                   <ArrowRight className="ml-2 h-4 w-4" />
