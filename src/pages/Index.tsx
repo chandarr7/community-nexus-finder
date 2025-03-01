@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Search, BriefcaseIcon } from 'lucide-react';
+import { ArrowRight, Search, BriefcaseIcon, NewspaperIcon, ExternalLinkIcon } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FeaturedEvent from '../components/FeaturedEvent';
@@ -10,6 +10,34 @@ import SearchBar from '../components/SearchBar';
 import CategoryFilter from '../components/CategoryFilter';
 import { getFeaturedEvents, getEventsByCategory } from '../data/events';
 import { Event } from '../types';
+
+// Sample breaking news data
+const breakingNews = [
+  {
+    id: 1,
+    title: "USF Research Team Makes Breakthrough Discovery",
+    summary: "A team of USF researchers has made a significant breakthrough in renewable energy technology.",
+    source: "USF News",
+    date: "2 hours ago",
+    url: "https://www.usf.edu/news"
+  },
+  {
+    id: 2,
+    title: "Major Tech Conference Coming to Tampa Bay",
+    summary: "The annual TechWave Conference will be held in Tampa next month, bringing together industry leaders.",
+    source: "Tampa Bay Times",
+    date: "5 hours ago",
+    url: "https://www.tampabay.com"
+  },
+  {
+    id: 3,
+    title: "New Campus Facility Opening Next Week",
+    summary: "USF's new Student Innovation Center will officially open its doors next Monday.",
+    source: "USF Campus Update",
+    date: "Yesterday",
+    url: "https://www.usf.edu/campus"
+  },
+];
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -61,6 +89,50 @@ const Index = () => {
           {/* Background decoration */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+        </section>
+        
+        {/* Breaking News Section */}
+        <section className="py-12 bg-white dark:bg-gray-900">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-8 flex items-center justify-between">
+              <div className="flex items-center">
+                <NewspaperIcon className="h-6 w-6 text-primary mr-2" />
+                <h2 className="text-2xl sm:text-3xl font-bold">Breaking News</h2>
+              </div>
+              <a 
+                href="https://news.google.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-primary flex items-center hover:underline"
+              >
+                More news
+                <ExternalLinkIcon className="ml-1 h-4 w-4" />
+              </a>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {breakingNews.map((item) => (
+                <a 
+                  key={item.id} 
+                  href={item.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="block bg-accent/10 rounded-xl p-6 hover:shadow-md transition-shadow duration-300"
+                >
+                  <div className="flex flex-col h-full">
+                    <div className="flex-grow">
+                      <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                      <p className="text-muted-foreground mb-4">{item.summary}</p>
+                    </div>
+                    <div className="flex justify-between items-center text-sm text-muted-foreground">
+                      <span>{item.source}</span>
+                      <span>{item.date}</span>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
         </section>
         
         {/* Featured Event Section */}
