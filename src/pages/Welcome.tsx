@@ -11,13 +11,9 @@ const Welcome = () => {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   
-  // Redirect to main page if on desktop
-  useEffect(() => {
-    if (!isMobile) {
-      navigate('/');
-    }
-  }, [isMobile, navigate]);
-
+  // Always show welcome screen on first launch of mobile app
+  // We're removing the desktop redirect since this is now a mobile app
+  
   const handleSocialLogin = (provider: string) => {
     setLoading(true);
     // Simulating login process
@@ -35,19 +31,19 @@ const Welcome = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-primary/10 to-background">
       <div className="flex-grow flex flex-col items-center justify-center p-6 text-center">
-        <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-6">
-          <span className="text-white text-2xl font-bold">C</span>
+        <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center mb-8 shadow-lg">
+          <span className="text-white text-3xl font-bold">C</span>
         </div>
         
         <h1 className="text-3xl font-bold mb-3">Community Connect</h1>
-        <p className="text-muted-foreground mb-8 max-w-xs">
+        <p className="text-muted-foreground mb-10 max-w-xs">
           Connect with your local community, join events and groups that match your interests.
         </p>
         
-        <div className="space-y-4 w-full max-w-xs mb-8">
+        <div className="space-y-4 w-full max-w-xs mb-10">
           <Button 
             variant="outline" 
-            className="w-full flex items-center justify-center gap-2 h-12"
+            className="w-full flex items-center justify-center gap-2 h-14 rounded-xl shadow-sm"
             onClick={() => handleSocialLogin('Google')}
             disabled={loading}
           >
@@ -69,37 +65,37 @@ const Welcome = () => {
                 fill="#EA4335"
               />
             </svg>
-            <span>Continue with Google</span>
+            <span className="text-base">Continue with Google</span>
           </Button>
           
           <Button 
             variant="outline" 
-            className="w-full flex items-center justify-center gap-2 h-12"
+            className="w-full flex items-center justify-center gap-2 h-14 rounded-xl shadow-sm"
             onClick={() => handleSocialLogin('Gmail')}
             disabled={loading}
           >
             <Mail className="h-5 w-5 text-red-500" />
-            <span>Continue with Gmail</span>
+            <span className="text-base">Continue with Gmail</span>
           </Button>
           
           <Button 
             variant="outline" 
-            className="w-full flex items-center justify-center gap-2 h-12"
+            className="w-full flex items-center justify-center gap-2 h-14 rounded-xl shadow-sm"
             onClick={() => handleSocialLogin('GitHub')}
             disabled={loading}
           >
             <Github className="h-5 w-5" />
-            <span>Continue with GitHub</span>
+            <span className="text-base">Continue with GitHub</span>
           </Button>
           
           <Button 
             variant="outline" 
-            className="w-full flex items-center justify-center gap-2 h-12"
+            className="w-full flex items-center justify-center gap-2 h-14 rounded-xl shadow-sm"
             onClick={() => handleSocialLogin('LinkedIn')}
             disabled={loading}
           >
             <Linkedin className="h-5 w-5 text-blue-600" />
-            <span>Continue with LinkedIn</span>
+            <span className="text-base">Continue with LinkedIn</span>
           </Button>
         </div>
         
@@ -107,7 +103,7 @@ const Welcome = () => {
           <div>Don't want to sign up yet?</div>
           <Link 
             to="/" 
-            className="inline-flex items-center text-primary hover:underline mt-1"
+            className="inline-flex items-center text-primary hover:underline mt-2 text-base"
           >
             Continue as guest
             <ArrowRight className="ml-1 h-4 w-4" />
@@ -115,7 +111,7 @@ const Welcome = () => {
         </div>
       </div>
       
-      <div className="p-4 text-center text-xs text-muted-foreground">
+      <div className="p-4 text-center text-xs text-muted-foreground pb-8">
         <p>By continuing, you agree to our Terms of Service and Privacy Policy.</p>
       </div>
     </div>

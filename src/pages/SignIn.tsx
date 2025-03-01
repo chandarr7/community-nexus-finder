@@ -31,7 +31,7 @@ const SignIn = () => {
       <Header />
       
       <main className="flex-grow pt-20 md:pt-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
             <div className="px-6 py-8">
               <div className="mb-2">
@@ -45,11 +45,11 @@ const SignIn = () => {
               <div className="space-y-4 mb-6">
                 <Button 
                   variant="outline" 
-                  className="w-full flex items-center justify-center gap-2"
+                  className="w-full flex items-center justify-center gap-2 h-12 rounded-xl"
                   onClick={() => handleSocialLogin('Google')}
                   disabled={loading}
                 >
-                  <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
                     <path
                       d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                       fill="#4285F4"
@@ -72,31 +72,31 @@ const SignIn = () => {
                 
                 <Button 
                   variant="outline" 
-                  className="w-full flex items-center justify-center gap-2"
+                  className="w-full flex items-center justify-center gap-2 h-12 rounded-xl"
                   onClick={() => handleSocialLogin('Gmail')}
                   disabled={loading}
                 >
-                  <Mail className="h-4 w-4 text-red-500" />
+                  <Mail className="h-5 w-5 text-red-500" />
                   <span>Continue with Gmail</span>
                 </Button>
                 
                 <Button 
                   variant="outline" 
-                  className="w-full flex items-center justify-center gap-2"
+                  className="w-full flex items-center justify-center gap-2 h-12 rounded-xl"
                   onClick={() => handleSocialLogin('GitHub')}
                   disabled={loading}
                 >
-                  <Github className="h-4 w-4" />
+                  <Github className="h-5 w-5" />
                   <span>Continue with GitHub</span>
                 </Button>
                 
                 <Button 
                   variant="outline" 
-                  className="w-full flex items-center justify-center gap-2"
+                  className="w-full flex items-center justify-center gap-2 h-12 rounded-xl"
                   onClick={() => handleSocialLogin('LinkedIn')}
                   disabled={loading}
                 >
-                  <Linkedin className="h-4 w-4 text-blue-600" />
+                  <Linkedin className="h-5 w-5 text-blue-600" />
                   <span>Continue with LinkedIn</span>
                 </Button>
                 
@@ -115,7 +115,7 @@ const SignIn = () => {
                   <input
                     id="email"
                     type="email"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="you@example.com"
                     required
                   />
@@ -127,7 +127,7 @@ const SignIn = () => {
                   <input
                     id="password"
                     type="password"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="••••••••"
                     required
                   />
@@ -149,7 +149,7 @@ const SignIn = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary/90 transition-colors"
+                  className="w-full bg-primary text-white py-3 px-4 rounded-xl hover:bg-primary/90 transition-colors"
                 >
                   Sign In
                 </button>

@@ -22,7 +22,6 @@ import Welcome from "./pages/Welcome";
 const queryClient = new QueryClient();
 
 const AppRoutes = () => {
-  const isMobile = useIsMobile();
   const [isFirstVisit, setIsFirstVisit] = useState(true);
   
   useEffect(() => {
@@ -34,8 +33,8 @@ const AppRoutes = () => {
     }
   }, []);
 
-  // If it's a mobile device and first visit, redirect to welcome page
-  if (isMobile && isFirstVisit) {
+  // For mobile app, always show welcome screen on first visit
+  if (isFirstVisit) {
     return (
       <Routes>
         <Route path="/welcome" element={<Welcome />} />
