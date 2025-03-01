@@ -27,7 +27,7 @@ export const events: Event[] = [
     organizerImage: '/placeholder.svg',
     category: 'music',
     price: '$15',
-    image: '/placeholder.svg',
+    image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1074&auto=format&fit=crop',
     isFeatured: true,
     attendees: 120,
     coordinates: {
@@ -48,7 +48,7 @@ export const events: Event[] = [
     organizerName: 'Community Farmers Association',
     category: 'food',
     price: 'Free',
-    image: '/placeholder.svg',
+    image: 'https://images.unsplash.com/photo-1488330890490-c291ecf62571?q=80&w=1170&auto=format&fit=crop',
     attendees: 500,
     coordinates: {
       lat: 40.7831,
@@ -68,7 +68,7 @@ export const events: Event[] = [
     organizerName: 'StartUp Network',
     category: 'technology',
     price: '$5',
-    image: '/placeholder.svg',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1170&auto=format&fit=crop',
     coordinates: {
       lat: 37.7749,
       lng: -122.4194
@@ -87,7 +87,7 @@ export const events: Event[] = [
     organizerName: 'Green Community Initiative',
     category: 'community',
     price: 'Free',
-    image: '/placeholder.svg',
+    image: 'https://images.unsplash.com/photo-1530587191325-3db32d826c18?q=80&w=1173&auto=format&fit=crop',
     attendees: 75,
     coordinates: {
       lat: 34.0522,
@@ -107,7 +107,7 @@ export const events: Event[] = [
     organizerName: 'Metropolitan Arts Council',
     category: 'art',
     price: '$10',
-    image: '/placeholder.svg',
+    image: 'https://images.unsplash.com/photo-1577083288073-40892c0860a4?q=80&w=1170&auto=format&fit=crop',
     isFeatured: true,
     coordinates: {
       lat: 41.8781,
@@ -127,7 +127,7 @@ export const events: Event[] = [
     organizerName: 'Education Foundation',
     category: 'sports',
     price: '$25',
-    image: '/placeholder.svg',
+    image: 'https://images.unsplash.com/photo-1533922051612-e760c3af09a6?q=80&w=1170&auto=format&fit=crop',
     attendees: 300,
     coordinates: {
       lat: 29.7604,
@@ -147,7 +147,7 @@ export const events: Event[] = [
     organizerName: 'Chamber of Commerce',
     category: 'networking',
     price: '$20',
-    image: '/placeholder.svg',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1032&auto=format&fit=crop',
     coordinates: {
       lat: 33.4484,
       lng: -112.0740
@@ -166,7 +166,7 @@ export const events: Event[] = [
     organizerName: 'Financial Empowerment Initiative',
     category: 'education',
     price: '$15',
-    image: '/placeholder.svg',
+    image: 'https://images.unsplash.com/photo-1427751840561-9852520f8ce8?q=80&w=1176&auto=format&fit=crop',
     attendees: 50,
     coordinates: {
       lat: 39.9526,
