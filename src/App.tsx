@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import USFJobs from "./pages/USFJobs";
 import SignIn from "./pages/SignIn";
 import CreateAccount from "./pages/CreateAccount";
+import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/usf-jobs" element={<USFJobs />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/create-account" element={<CreateAccount />} />
+          <Route path="/about" element={<About />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
