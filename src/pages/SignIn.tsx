@@ -1,9 +1,7 @@
-
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Mail } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, GoogleIcon } from 'lucide-react';
+import { ArrowLeft, Mail, Github, Linkedin, CircleUserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { toast } from '@/hooks/use-toast';
@@ -47,7 +45,7 @@ const SignIn = () => {
                   onClick={() => handleSocialLogin('Google')}
                   disabled={loading}
                 >
-                  <GoogleIcon className="h-4 w-4" />
+                  <CircleUserRound className="h-4 w-4" />
                   <span>Continue with Google</span>
                 </Button>
                 
@@ -57,7 +55,7 @@ const SignIn = () => {
                   onClick={() => handleSocialLogin('GitHub')}
                   disabled={loading}
                 >
-                  <GithubIcon className="h-4 w-4" />
+                  <Github className="h-4 w-4" />
                   <span>Continue with GitHub</span>
                 </Button>
                 
@@ -67,7 +65,7 @@ const SignIn = () => {
                   onClick={() => handleSocialLogin('LinkedIn')}
                   disabled={loading}
                 >
-                  <LinkedinIcon className="h-4 w-4" />
+                  <Linkedin className="h-4 w-4" />
                   <span>Continue with LinkedIn</span>
                 </Button>
                 

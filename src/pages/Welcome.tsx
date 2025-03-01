@@ -1,8 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, ArrowRight } from 'lucide-react';
-import { Github, Linkedin, GithubIcon, LinkedinIcon, GoogleIcon } from 'lucide-react';
+import { Mail, ArrowRight, Github, Linkedin, CircleUserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -46,7 +45,7 @@ const Welcome = () => {
             onClick={() => handleSocialLogin('google')}
             disabled={loading}
           >
-            <GoogleIcon className="h-5 w-5" />
+            <CircleUserRound className="h-5 w-5" />
             <span>Continue with Google</span>
           </Button>
           
@@ -56,7 +55,7 @@ const Welcome = () => {
             onClick={() => handleSocialLogin('github')}
             disabled={loading}
           >
-            <GithubIcon className="h-5 w-5" />
+            <Github className="h-5 w-5" />
             <span>Continue with GitHub</span>
           </Button>
           
@@ -66,7 +65,7 @@ const Welcome = () => {
             onClick={() => handleSocialLogin('linkedin')}
             disabled={loading}
           >
-            <LinkedinIcon className="h-5 w-5" />
+            <Linkedin className="h-5 w-5" />
             <span>Continue with LinkedIn</span>
           </Button>
           
