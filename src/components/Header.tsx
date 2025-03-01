@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogIn, UserPlus } from 'lucide-react';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -47,7 +47,7 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:block">
+          <nav className="hidden md:flex items-center">
             <ul className="flex space-x-8">
               {navigation.map((item) => (
                 <li key={item.name}>
@@ -67,6 +67,24 @@ const Header = () => {
                 </li>
               ))}
             </ul>
+            
+            {/* Auth Buttons */}
+            <div className="flex items-center ml-8 space-x-4">
+              <Link
+                to="/sign-in"
+                className="flex items-center text-sm font-medium px-4 py-2 rounded-full border border-primary/30 text-primary hover:bg-primary/5 transition-colors duration-200"
+              >
+                <LogIn className="h-4 w-4 mr-2" />
+                Sign In
+              </Link>
+              <Link
+                to="/create-account"
+                className="flex items-center text-sm font-medium px-4 py-2 rounded-full bg-primary text-white hover:bg-primary/90 transition-colors duration-200"
+              >
+                <UserPlus className="h-4 w-4 mr-2" />
+                Create Account
+              </Link>
+            </div>
           </nav>
 
           {/* Mobile menu button */}
@@ -107,6 +125,24 @@ const Header = () => {
               {item.name}
             </Link>
           ))}
+          
+          {/* Mobile Auth Buttons */}
+          <div className="mt-6 px-3 space-y-4">
+            <Link
+              to="/sign-in"
+              className="flex items-center justify-center text-base font-medium py-3 rounded-md border border-primary/30 text-primary hover:bg-primary/5 transition-colors duration-200"
+            >
+              <LogIn className="h-5 w-5 mr-2" />
+              Sign In
+            </Link>
+            <Link
+              to="/create-account"
+              className="flex items-center justify-center text-base font-medium py-3 rounded-md bg-primary text-white hover:bg-primary/90 transition-colors duration-200"
+            >
+              <UserPlus className="h-5 w-5 mr-2" />
+              Create Account
+            </Link>
+          </div>
         </div>
       </div>
     </header>
