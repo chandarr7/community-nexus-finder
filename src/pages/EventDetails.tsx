@@ -1,10 +1,10 @@
-
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Calendar, Clock, MapPin, Users, Share2, ArrowLeft, ChevronRight } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import EventCard from '../components/EventCard';
+import EventRegistrationModal from '../components/EventRegistrationModal';
 import { getEventById, getEventsByCategory } from '../data/events';
 import { Event } from '../types';
 import { useToast } from '@/hooks/use-toast';
@@ -14,6 +14,7 @@ const EventDetails = () => {
   const [event, setEvent] = useState<Event | null>(null);
   const [relatedEvents, setRelatedEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
   
@@ -66,6 +67,14 @@ const EventDetails = () => {
       day: 'numeric'
     };
     return new Date(dateString).toLocaleDateString('en-US', options);
+  };
+
+  const openRegistration = () => {
+    setIsRegistrationOpen(true);
+  };
+
+  const closeRegistration = () => {
+    setIsRegistrationOpen(false);
   };
 
   if (loading) {
@@ -243,6 +252,7 @@ const EventDetails = () => {
                 </div>
                 
                 <button
+                  onClick={openRegistration}
                   className="w-full py-3 px-4 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors"
                 >
                   Register Now
@@ -274,6 +284,16 @@ const EventDetails = () => {
           )}
         </div>
       </main>
+      
+      {event && (
+        <EventRegistrationModal
+          isOpen={isRegistrationOpen}
+          onClose={closeRegistration}
+          eventTitle={event.title}
+          eventDate={formatDate(event.date)}
+          maxTickets={Math.max(50, event.attendees ? event.attendees * 2 : 100)}
+        />
+      )}
       
       <Footer />
     </div>
