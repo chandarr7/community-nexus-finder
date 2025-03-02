@@ -5,12 +5,14 @@ import { Mail, ArrowRight, Github, Linkedin, Info, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { toast } from '@/hooks/use-toast';
+import { Card, CardContent } from '@/components/ui/card';
 
 const Welcome = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [currentStep, setCurrentStep] = useState(0);
+  const [showingLoginPage, setShowingLoginPage] = useState(false);
   
   // Campus data
   const campuses = [
@@ -42,21 +44,17 @@ const Welcome = () => {
       }, 3000);
       
       return () => clearTimeout(timer);
-    } else {
-      // Redirect to home after showcasing all campuses
-      const redirectTimer = setTimeout(() => {
-        navigate('/');
-        
-        toast({
-          title: "Welcome to Community Connect",
-          description: "Explore events and connect with your USF community",
-          variant: "success",
-        });
-      }, 1000);
+    } else if (!showingLoginPage) {
+      // Show login page after showcasing all campuses
+      setShowingLoginPage(true);
       
-      return () => clearTimeout(redirectTimer);
+      toast({
+        title: "Welcome to Community Connect",
+        description: "Please sign in to continue",
+        variant: "info",
+      });
     }
-  }, [currentStep, navigate]);
+  }, [currentStep, showingLoginPage]);
   
   const handleSocialLogin = (provider: string) => {
     setLoading(true);
@@ -72,8 +70,21 @@ const Welcome = () => {
     }, 1500);
   };
 
+  const handleCampusClick = (index: number) => {
+    setCurrentStep(index);
+    // Reset the auto-advance timer by forcing a re-render of the component
+    const timer = setTimeout(() => {
+      // This is just to trigger a re-render
+    }, 10);
+    return () => clearTimeout(timer);
+  };
+
+  const handleSkip = () => {
+    setShowingLoginPage(true);
+  };
+
   // Welcome board view showing campuses
-  if (currentStep < campuses.length) {
+  if (currentStep < campuses.length && !showingLoginPage) {
     return (
       <div className={`min-h-screen flex flex-col bg-gradient-to-b ${campuses[currentStep].color} to-background transition-colors duration-1000`}>
         <div className="flex-grow flex flex-col items-center justify-center p-6 text-center">
@@ -92,22 +103,25 @@ const Welcome = () => {
               {campuses[currentStep].description}
             </p>
             
-            <div className="flex justify-center items-center gap-2 mb-4">
-              {campuses.map((_, index) => (
-                <div 
-                  key={index} 
-                  className={`h-2 w-${index === currentStep ? '8' : '2'} rounded-full transition-all duration-500 ${
-                    index === currentStep ? 'bg-primary' : 'bg-gray-300'
-                  }`}
-                />
+            <div className="flex justify-center items-center gap-2 mb-6">
+              {campuses.map((campus, index) => (
+                <Button 
+                  key={index}
+                  variant={index === currentStep ? "default" : "outline"}
+                  size="sm"
+                  className={`px-3 py-1 text-xs rounded-full ${index === currentStep ? '' : 'hover:bg-primary/10'}`}
+                  onClick={() => handleCampusClick(index)}
+                >
+                  {campus.name}
+                </Button>
               ))}
             </div>
             
             <Button 
               className="w-full"
-              onClick={() => setCurrentStep(campuses.length)}
+              onClick={handleSkip}
             >
-              Skip Introduction
+              Skip to Login
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
@@ -116,7 +130,7 @@ const Welcome = () => {
     );
   }
   
-  // Final welcome view with login options
+  // Login view with social options
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-primary/10 to-background">
       <div className="flex-grow flex flex-col items-center justify-center p-6 text-center">
