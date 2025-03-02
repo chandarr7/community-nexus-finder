@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, ArrowRight, Github, Linkedin } from 'lucide-react';
+import { Mail, ArrowRight, Github, Linkedin, Info, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { toast } from '@/hooks/use-toast';
@@ -10,9 +10,53 @@ const Welcome = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const isMobile = useIsMobile();
+  const [currentStep, setCurrentStep] = useState(0);
   
-  // Always show welcome screen on first launch of mobile app
-  // We're removing the desktop redirect since this is now a mobile app
+  // Campus data
+  const campuses = [
+    {
+      name: "Tampa",
+      description: "The main campus with over 200 degree programs and home to most of USF's colleges and schools.",
+      image: "https://www.usf.edu/images/tampa-arial.jpg",
+      color: "from-green-500/20 to-green-600/30"
+    },
+    {
+      name: "St. Petersburg",
+      description: "Located on Tampa Bay's waterfront, featuring marine science, business, and education programs.",
+      image: "https://www.usf.edu/images/st-pete.jpg",
+      color: "from-blue-500/20 to-blue-600/30"
+    },
+    {
+      name: "Sarasota-Manatee",
+      description: "Offers programs in hospitality, business, education, and STEM on Florida's Gulf Coast.",
+      image: "https://www.usf.edu/images/sarasota.jpg",
+      color: "from-yellow-500/20 to-yellow-600/30"
+    }
+  ];
+
+  // Auto-advance through campuses
+  useEffect(() => {
+    if (currentStep < campuses.length) {
+      const timer = setTimeout(() => {
+        setCurrentStep(prev => prev + 1);
+      }, 3000);
+      
+      return () => clearTimeout(timer);
+    } else {
+      // Redirect to home after showcasing all campuses
+      const redirectTimer = setTimeout(() => {
+        navigate('/');
+        
+        toast({
+          title: "Welcome to Community Connect",
+          description: "Explore events and connect with your USF community",
+          variant: "success",
+        });
+      }, 1000);
+      
+      return () => clearTimeout(redirectTimer);
+    }
+  }, [currentStep, navigate]);
   
   const handleSocialLogin = (provider: string) => {
     setLoading(true);
@@ -28,6 +72,51 @@ const Welcome = () => {
     }, 1500);
   };
 
+  // Welcome board view showing campuses
+  if (currentStep < campuses.length) {
+    return (
+      <div className={`min-h-screen flex flex-col bg-gradient-to-b ${campuses[currentStep].color} to-background transition-colors duration-1000`}>
+        <div className="flex-grow flex flex-col items-center justify-center p-6 text-center">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 max-w-md w-full">
+            <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center mb-6 mx-auto shadow-lg">
+              <span className="text-white text-3xl font-bold">C</span>
+            </div>
+            
+            <h1 className="text-3xl font-bold mb-2">USF {campuses[currentStep].name} Campus</h1>
+            <div className="flex items-center justify-center mb-4">
+              <MapPin className="h-4 w-4 text-primary mr-1" />
+              <span className="text-sm text-muted-foreground">University of South Florida</span>
+            </div>
+            
+            <p className="text-muted-foreground mb-8">
+              {campuses[currentStep].description}
+            </p>
+            
+            <div className="flex justify-center items-center gap-2 mb-4">
+              {campuses.map((_, index) => (
+                <div 
+                  key={index} 
+                  className={`h-2 w-${index === currentStep ? '8' : '2'} rounded-full transition-all duration-500 ${
+                    index === currentStep ? 'bg-primary' : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+            
+            <Button 
+              className="w-full"
+              onClick={() => setCurrentStep(campuses.length)}
+            >
+              Skip Introduction
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
+  // Final welcome view with login options
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-primary/10 to-background">
       <div className="flex-grow flex flex-col items-center justify-center p-6 text-center">
