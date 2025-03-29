@@ -63,9 +63,9 @@ const Welcome = () => {
     setViewingDiagram(isViewing);
   };
 
-  // Add a style to ensure the page takes up the full viewport height without any padding
+  // Ensure we take exactly the viewport height with no overflow
   return (
-    <div className="h-screen w-full overflow-auto" style={{ paddingBottom: 0 }}>
+    <div className="h-screen w-full overflow-hidden">
       {currentStep < campuses.length && !showingLoginPage ? (
         <CampusShowcase 
           campuses={campuses}
