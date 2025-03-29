@@ -63,20 +63,22 @@ const Welcome = () => {
     setViewingDiagram(isViewing);
   };
 
-  // Render campus showcase or login view
-  if (currentStep < campuses.length && !showingLoginPage) {
-    return (
-      <CampusShowcase 
-        campuses={campuses}
-        currentStep={currentStep}
-        onCampusClick={handleCampusClick}
-        onSkip={handleSkip}
-        onDiagramToggle={handleDiagramToggle}
-      />
-    );
-  }
-  
-  return <LoginView onLoginSuccess={handleLoginSuccess} />;
+  // Add a style to ensure the page takes up the full viewport height without any padding
+  return (
+    <div className="h-screen w-full overflow-auto" style={{ paddingBottom: 0 }}>
+      {currentStep < campuses.length && !showingLoginPage ? (
+        <CampusShowcase 
+          campuses={campuses}
+          currentStep={currentStep}
+          onCampusClick={handleCampusClick}
+          onSkip={handleSkip}
+          onDiagramToggle={handleDiagramToggle}
+        />
+      ) : (
+        <LoginView onLoginSuccess={handleLoginSuccess} />
+      )}
+    </div>
+  );
 };
 
 export default Welcome;

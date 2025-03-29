@@ -33,21 +33,21 @@ const CampusShowcase = ({
   }, [showDiagram, onDiagramToggle]);
   
   return (
-    <div className={`min-h-screen flex flex-col bg-gradient-to-b ${campuses[currentStep].color} to-background transition-colors duration-1000`}>
+    <div className={`min-h-screen w-full flex flex-col bg-gradient-to-b ${campuses[currentStep].color} to-background transition-colors duration-1000`}>
       <div className="flex-grow flex flex-col items-center justify-center p-6 text-center">
         {showDiagram ? (
-          <div className="w-full max-w-5xl bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-6">
+          <div className="w-full max-w-5xl bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-6 my-8 overflow-y-auto max-h-[90vh]">
             <MicroservicesArchitecture />
             <Button 
               variant="outline"
-              className="mt-4"
+              className="mt-4 mb-2"
               onClick={() => setShowDiagram(false)}
             >
               Back to Campuses
             </Button>
           </div>
         ) : (
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 max-w-md w-full">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 max-w-md w-full my-16">
             <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center mb-6 mx-auto shadow-lg">
               <span className="text-white text-3xl font-bold">C</span>
             </div>
@@ -62,7 +62,7 @@ const CampusShowcase = ({
               {campuses[currentStep].description}
             </p>
             
-            <div className="flex justify-center items-center gap-2 mb-6">
+            <div className="flex justify-center items-center gap-2 mb-6 flex-wrap">
               {campuses.map((campus, index) => (
                 <Button 
                   key={index}
