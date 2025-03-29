@@ -10,18 +10,26 @@ import { campuses } from '@/data/campuses';
 const Welcome = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [showingLoginPage, setShowingLoginPage] = useState(false);
+  const [viewingDiagram, setViewingDiagram] = useState(false);
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   
-  // Auto-advance through campuses
+  // Auto-advance through campuses when not viewing diagram
   useEffect(() => {
-    if (currentStep < campuses.length) {
+    if (currentStep < campuses.length && !showingLoginPage && !viewingDiagram) {
       const timer = setTimeout(() => {
-        setCurrentStep(prev => prev + 1);
+        setCurrentStep(prev => {
+          if (prev + 1 >= campuses.length) {
+            // Show login page after showcasing all campuses
+            setShowingLoginPage(true);
+            return prev;
+          }
+          return prev + 1;
+        });
       }, 3000);
       
       return () => clearTimeout(timer);
-    } else if (!showingLoginPage) {
+    } else if (currentStep >= campuses.length && !showingLoginPage) {
       // Show login page after showcasing all campuses
       setShowingLoginPage(true);
       
@@ -31,7 +39,7 @@ const Welcome = () => {
         variant: "info",
       });
     }
-  }, [currentStep, showingLoginPage]);
+  }, [currentStep, showingLoginPage, viewingDiagram]);
   
   const handleCampusClick = (index: number) => {
     setCurrentStep(index);
@@ -50,6 +58,11 @@ const Welcome = () => {
     navigate('/');
   };
 
+  // Track diagram state
+  const handleDiagramToggle = (isViewing: boolean) => {
+    setViewingDiagram(isViewing);
+  };
+
   // Render campus showcase or login view
   if (currentStep < campuses.length && !showingLoginPage) {
     return (
@@ -58,6 +71,7 @@ const Welcome = () => {
         currentStep={currentStep}
         onCampusClick={handleCampusClick}
         onSkip={handleSkip}
+        onDiagramToggle={handleDiagramToggle}
       />
     );
   }

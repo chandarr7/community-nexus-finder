@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { MapPin } from 'lucide-react';
 import { ArrowRight } from 'lucide-react';
 import MicroservicesArchitecture from './MicroservicesArchitecture';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface CampusShowcaseProps {
   campuses: {
@@ -15,21 +15,28 @@ interface CampusShowcaseProps {
   currentStep: number;
   onCampusClick: (index: number) => void;
   onSkip: () => void;
+  onDiagramToggle?: (isViewing: boolean) => void;
 }
 
 const CampusShowcase = ({ 
   campuses, 
   currentStep, 
   onCampusClick, 
-  onSkip 
+  onSkip,
+  onDiagramToggle
 }: CampusShowcaseProps) => {
   const [showDiagram, setShowDiagram] = useState(false);
+  
+  // Notify parent component when diagram view changes
+  useEffect(() => {
+    onDiagramToggle?.(showDiagram);
+  }, [showDiagram, onDiagramToggle]);
   
   return (
     <div className={`min-h-screen flex flex-col bg-gradient-to-b ${campuses[currentStep].color} to-background transition-colors duration-1000`}>
       <div className="flex-grow flex flex-col items-center justify-center p-6 text-center">
         {showDiagram ? (
-          <div className="w-full max-w-4xl">
+          <div className="w-full max-w-5xl bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-6">
             <MicroservicesArchitecture />
             <Button 
               variant="outline"
