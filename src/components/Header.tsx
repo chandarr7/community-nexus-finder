@@ -80,14 +80,16 @@ const Header = () => {
                 {link.name}
               </Link>
             ))}
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="flex items-center gap-2 text-sm font-medium hover:bg-accent/50 transition-colors"
-            >
-              <FileText className="h-4 w-4" />
-              Documents
-            </Button>
+            <Link to="/documents">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="flex items-center gap-2 text-sm font-medium hover:bg-accent/50 transition-colors"
+              >
+                <FileText className="h-4 w-4" />
+                Documents
+              </Button>
+            </Link>
           </nav>
           
           {/* Auth Buttons & Notifications - Desktop */}
@@ -153,13 +155,15 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
-              <Button 
-                variant="ghost" 
-                className="flex items-center justify-start gap-2 px-4 py-2 rounded-md font-medium hover:bg-accent/50 transition-colors"
-              >
-                <FileText className="h-4 w-4" />
-                Documents
-              </Button>
+              <Link to="/documents">
+                <Button 
+                  variant="ghost" 
+                  className="flex items-center justify-start gap-2 px-4 py-2 rounded-md font-medium hover:bg-accent/50 transition-colors w-full text-left"
+                >
+                  <FileText className="h-4 w-4" />
+                  Documents
+                </Button>
+              </Link>
               <hr className="border-border my-2" />
               <Link
                 to="/sign-in"

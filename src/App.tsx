@@ -18,6 +18,7 @@ import Notifications from "./pages/Notifications";
 import Groups from "./pages/Groups";
 import GroupDetail from "./pages/GroupDetail";
 import Welcome from "./pages/Welcome";
+import Documents from "./pages/Documents";
 import BottomNav from "./components/BottomNav";
 
 const queryClient = new QueryClient();
@@ -84,6 +85,7 @@ const AppRoutes = () => {
       <Route path="/notifications" element={<Notifications />} />
       <Route path="/groups" element={<Groups />} />
       <Route path="/groups/:id" element={<GroupDetail />} />
+      <Route path="/documents" element={<Documents />} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Routes>
